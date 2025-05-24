@@ -30,7 +30,7 @@ def brute_force_password(
         target_hashes: set
 ) -> List[str]:
     found_passwords = []
-    for i in range(start, end):
+    for i in range(start, end + 1):
         number = f"{i:08d}"
         hashed = sha256_hash_str(number)
         if hashed in target_hashes:
@@ -57,6 +57,7 @@ def main_multiprocessing_executor() -> None:
                     TARGET_HASHES
                 )
             )
+            print(start, end)
             print(f"Process {i} working from {start} to {end}")
 
         for future in futures:
